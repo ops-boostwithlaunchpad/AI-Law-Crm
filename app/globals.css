@@ -1,0 +1,312 @@
+@import "tailwindcss";
+
+/* ───────────────────────────────────────────────────────────
+   Design tokens — modern Dribbble-style dashboard.
+   Dark sidebar, rounded floating cards, blue accent, pastel chips.
+─────────────────────────────────────────────────────────── */
+
+:root {
+  /* Surfaces */
+  --bg-primary: #f5f6f8;          /* page canvas — very subtle gray, makes white cards "float" */
+  --bg-secondary: #eef0f4;        /* slightly deeper surface */
+  --bg-elevated: #ffffff;         /* card backgrounds — pure white */
+  --bg-tinted: #eff6ff;
+  --border: #ecedf1;              /* very soft hairline */
+  --border-strong: #d8dae0;
+
+  /* Sidebar — deep slate */
+  --sidebar-bg: #0b1120;
+  --sidebar-bg-hover: #1a2236;
+  --sidebar-bg-active: #1e3a8a;
+  --sidebar-border: #1a2236;
+  --sidebar-text: #cbd5e1;
+  --sidebar-text-muted: #64748b;
+  --sidebar-text-active: #ffffff;
+
+  /* Ink — slate scale */
+  --text-primary: #0f172a;
+  --text-secondary: #475467;
+  --text-tertiary: #98a2b3;
+
+  /* Primary blue */
+  --accent: #2563eb;
+  --accent-hover: #1d4ed8;
+  --accent-strong: #1e40af;
+  --accent-subtle: #eff6ff;
+  --accent-border: #bfdbfe;
+  --accent-soft: #dbeafe;
+
+  /* Pastel icon-chip backgrounds */
+  --chip-blue: #e0edff;
+  --chip-blue-fg: #2563eb;
+  --chip-indigo: #e6e7ff;
+  --chip-indigo-fg: #6366f1;
+  --chip-peach: #ffe9dd;
+  --chip-peach-fg: #ea580c;
+  --chip-mint: #d6f5e0;
+  --chip-mint-fg: #16a34a;
+  --chip-lavender: #ece6ff;
+  --chip-lavender-fg: #7c3aed;
+  --chip-amber: #fef3c7;
+  --chip-amber-fg: #b45309;
+  --chip-rose: #ffe1e6;
+  --chip-rose-fg: #e11d48;
+
+  /* Roles */
+  --lawyer: #2563eb;
+  --investor: #b45309;
+  --ai: #6366f1;
+
+  /* Status */
+  --success: #16a34a;
+  --warning: #d97706;
+  --danger: #dc2626;
+  --success-subtle: #ecfdf5;
+  --warning-subtle: #fff7ed;
+  --danger-subtle: #fef2f2;
+  --ai-subtle: #eef2ff;
+
+  /* Status badge palettes (soft pastel) */
+  --status-success-bg: #d1fae5;
+  --status-success-fg: #047857;
+  --status-warning-bg: #ffedd5;
+  --status-warning-fg: #c2410c;
+  --status-danger-bg: #ffe4e6;
+  --status-danger-fg: #be123c;
+  --status-info-bg: #e0e7ff;
+  --status-info-fg: #4338ca;
+
+  /* Motion */
+  --ease-out-expo: cubic-bezier(0.32, 0.72, 0, 1);
+  --ease-out-soft: cubic-bezier(0.22, 0.61, 0.36, 1);
+
+  /* Radii — rounder, more playful */
+  --radius-button: 10px;
+  --radius-card: 18px;
+  --radius-card-lg: 22px;
+  --radius-modal: 16px;
+  --radius-pill: 9999px;
+  --radius-chip: 12px;
+
+  /* Shadows — soft, multi-layer, "floating" */
+  --shadow-xs: 0 1px 2px rgba(15, 23, 42, 0.04);
+  --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.04),
+    0 2px 6px rgba(15, 23, 42, 0.04);
+  --shadow-card: 0 1px 2px rgba(15, 23, 42, 0.04),
+    0 4px 12px rgba(15, 23, 42, 0.04), 0 12px 32px rgba(15, 23, 42, 0.04);
+  --shadow-card-hover: 0 1px 2px rgba(15, 23, 42, 0.05),
+    0 8px 16px rgba(15, 23, 42, 0.06), 0 20px 48px rgba(15, 23, 42, 0.06);
+  --shadow-lg: 0 8px 24px rgba(15, 23, 42, 0.08),
+    0 24px 64px rgba(15, 23, 42, 0.1);
+  --shadow-blue: 0 1px 0 rgba(255, 255, 255, 0.18) inset,
+    0 1px 2px rgba(15, 23, 42, 0.18), 0 0 0 1px rgba(37, 99, 235, 0.5),
+    0 6px 18px -4px rgba(37, 99, 235, 0.4);
+  --shadow-pop: 0 6px 24px rgba(37, 99, 235, 0.18);
+}
+
+@theme inline {
+  --color-canvas: var(--bg-primary);
+  --color-surface: var(--bg-secondary);
+  --color-elevated: var(--bg-elevated);
+  --color-tinted: var(--bg-tinted);
+  --color-line: var(--border);
+  --color-line-strong: var(--border-strong);
+
+  --color-ink: var(--text-primary);
+  --color-ink-muted: var(--text-secondary);
+  --color-ink-subtle: var(--text-tertiary);
+
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-accent-strong: var(--accent-strong);
+  --color-accent-subtle: var(--accent-subtle);
+
+  --color-lawyer: var(--lawyer);
+  --color-investor: var(--investor);
+  --color-ai: var(--ai);
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-danger: var(--danger);
+
+  --color-sidebar-bg: var(--sidebar-bg);
+
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains), ui-monospace, "SF Mono", Menlo, monospace;
+
+  --radius-btn: 10px;
+  --radius-card: 18px;
+  --radius-modal: 16px;
+}
+
+/* ───────────────────────────────────────────────────────────
+   Base
+─────────────────────────────────────────────────────────── */
+
+* {
+  border-color: var(--border);
+}
+
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  font-feature-settings: "cv11", "ss01", "ss03";
+  font-size: 14px;
+  line-height: 1.55;
+  letter-spacing: -0.005em;
+}
+
+/* ───────────────────────────────────────────────────────────
+   Typography utilities
+─────────────────────────────────────────────────────────── */
+
+.display-1 {
+  font-size: clamp(2.5rem, 4.5vw, 3.5rem);
+  font-weight: 700;
+  line-height: 1.04;
+  letter-spacing: -0.04em;
+}
+
+.display-2 {
+  font-size: clamp(1.75rem, 3vw, 2.25rem);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.034em;
+}
+
+.display-3 {
+  font-size: 1.375rem;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.025em;
+}
+
+.display-4 {
+  font-size: 1.0625rem;
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: -0.018em;
+}
+
+.label-mono {
+  font-family: var(--font-jetbrains), ui-monospace, monospace;
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+}
+
+.tabular {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum", "cv11";
+}
+
+/* ───────────────────────────────────────────────────────────
+   Focus & selection — blue
+─────────────────────────────────────────────────────────── */
+
+:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--bg-primary), 0 0 0 4px rgba(37, 99, 235, 0.45);
+  border-radius: 6px;
+}
+
+::selection {
+  background: rgba(37, 99, 235, 0.2);
+  color: var(--text-primary);
+}
+
+/* ───────────────────────────────────────────────────────────
+   Scrollbars — refined for dark + light surfaces
+─────────────────────────────────────────────────────────── */
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border-strong);
+  border-radius: 999px;
+  border: 2px solid var(--bg-primary);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-tertiary);
+}
+
+.dark-scroll ::-webkit-scrollbar-thumb {
+  background: #1e293b;
+  border-color: var(--sidebar-bg);
+}
+.dark-scroll ::-webkit-scrollbar-thumb:hover {
+  background: #334155;
+}
+
+/* ───────────────────────────────────────────────────────────
+   Skeleton
+─────────────────────────────────────────────────────────── */
+
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    var(--bg-secondary) 0%,
+    rgba(238, 240, 244, 0.4) 50%,
+    var(--bg-secondary) 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 2.4s var(--ease-out-soft) infinite;
+  border-radius: 6px;
+}
+
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* ───────────────────────────────────────────────────────────
+   Floating card hover
+─────────────────────────────────────────────────────────── */
+
+.card-float {
+  transition: box-shadow 300ms var(--ease-out-expo),
+    transform 300ms var(--ease-out-expo);
+}
+.card-float:hover {
+  box-shadow: var(--shadow-card-hover);
+  transform: translateY(-1px);
+}
+
+/* ───────────────────────────────────────────────────────────
+   Diagonal stripe pattern (for inactive bars in chart)
+─────────────────────────────────────────────────────────── */
+
+.stripe-bg {
+  background-image: repeating-linear-gradient(
+    45deg,
+    rgba(15, 23, 42, 0.04),
+    rgba(15, 23, 42, 0.04) 4px,
+    transparent 4px,
+    transparent 8px
+  );
+}
+
+/* ───────────────────────────────────────────────────────────
+   Number ticker container
+─────────────────────────────────────────────────────────── */
+
+.num-display {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum", "cv11";
+  letter-spacing: -0.04em;
+  font-weight: 700;
+  color: var(--text-primary);
+}
