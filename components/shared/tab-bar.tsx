@@ -22,15 +22,16 @@ export function TabBar({
   onExport,
 }: TabBarProps) {
   return (
-    <div className="flex items-center justify-between px-8 mb-6 max-w-[1400px] flex-wrap gap-3">
-      <div className="flex items-center gap-2">
-        <div className="flex items-center p-1 bg-[var(--bg-elevated)] border border-[var(--border)] rounded-[12px] shadow-[var(--shadow-xs)]">
+    <div className="flex items-center justify-between px-4 sm:px-6 md:px-8 mb-5 md:mb-6 max-w-[1400px] gap-3 flex-wrap">
+      <div className="flex items-center gap-2 min-w-0 flex-wrap">
+        {/* Tabs — horizontal scroll on overflow */}
+        <div className="flex items-center p-1 bg-[var(--bg-elevated)] border border-[var(--border)] rounded-[12px] shadow-[var(--shadow-xs)] overflow-x-auto max-w-full no-scrollbar">
           {tabs.map((t) => (
             <button
               key={t.id}
               onClick={() => onChange(t.id)}
               className={cn(
-                "relative h-8 px-3.5 text-[13px] font-medium rounded-[8px] transition-colors duration-200",
+                "relative h-8 px-3.5 text-[13px] font-medium rounded-[8px] transition-colors duration-200 whitespace-nowrap shrink-0",
                 active === t.id
                   ? "text-[var(--text-primary)]"
                   : "text-[var(--text-tertiary)] hover:text-[var(--text-secondary)]"
@@ -51,14 +52,14 @@ export function TabBar({
         {primaryAction && (
           <button
             onClick={primaryAction.onClick}
-            className="ml-2 inline-flex items-center h-9 px-3.5 rounded-[10px] bg-[var(--bg-elevated)] border border-[var(--border)] text-[13px] font-medium text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:border-[var(--border-strong)] transition-all shadow-[var(--shadow-xs)]"
+            className="inline-flex items-center h-9 px-3.5 rounded-[10px] bg-[var(--bg-elevated)] border border-[var(--border)] text-[13px] font-medium text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:border-[var(--border-strong)] transition-all shadow-[var(--shadow-xs)] whitespace-nowrap"
           >
             {primaryAction.label}
           </button>
         )}
       </div>
 
-      <div className="flex items-center gap-2">
+      <div className="flex items-center gap-2 shrink-0">
         <button
           onClick={onFilter}
           className="inline-flex items-center h-9 px-3.5 rounded-[10px] bg-[var(--bg-elevated)] border border-[var(--border)] text-[13px] font-medium text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:border-[var(--border-strong)] transition-all shadow-[var(--shadow-xs)]"

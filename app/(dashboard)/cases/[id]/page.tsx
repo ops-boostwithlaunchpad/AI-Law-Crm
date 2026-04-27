@@ -63,7 +63,7 @@ export default function CaseDetailPage() {
   const isStub = !CASE_DETAILS[params.id];
 
   return (
-    <div className="px-8 pt-6 pb-12 max-w-[1400px]">
+    <div className="px-4 sm:px-6 md:px-8 pt-5 md:pt-6 pb-10 md:pb-12 max-w-[1400px]">
       {/* Breadcrumb (sub-navigation — keeps single arrow icon) */}
       <Link
         href="/cases"
@@ -78,9 +78,9 @@ export default function CaseDetailPage() {
         initial={{ opacity: 0, y: 6 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4, ease: [0.32, 0.72, 0, 1] }}
-        className="bg-[var(--bg-elevated)] rounded-[20px] border border-[var(--border)] p-7 shadow-[var(--shadow-card)] mb-6"
+        className="bg-[var(--bg-elevated)] rounded-[20px] border border-[var(--border)] p-5 md:p-7 shadow-[var(--shadow-card)] mb-5 md:mb-6"
       >
-        <div className="flex items-start justify-between gap-6 flex-wrap mb-7">
+        <div className="flex items-start justify-between gap-4 md:gap-6 flex-wrap mb-6 md:mb-7">
           <div className="min-w-0">
             <div className="flex items-center gap-2 mb-2 flex-wrap">
               <StageBadge stage={detail.stage} />
@@ -108,12 +108,12 @@ export default function CaseDetailPage() {
             </div>
           </div>
 
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 flex-wrap w-full md:w-auto">
             <button className="h-9 px-3.5 rounded-[10px] bg-[var(--bg-elevated)] border border-[var(--border)] text-[12.5px] font-medium text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:border-[var(--border-strong)] inline-flex items-center transition-colors">
               Edit
             </button>
             <button
-              className="h-9 px-3.5 rounded-[10px] bg-[var(--accent)] text-white text-[12.5px] font-medium inline-flex items-center hover:bg-[var(--accent-hover)] transition-colors"
+              className="h-9 px-3.5 rounded-[10px] bg-[var(--accent)] text-white text-[12.5px] font-medium inline-flex items-center hover:bg-[var(--accent-hover)] transition-colors flex-1 md:flex-initial justify-center"
               style={{
                 boxShadow:
                   "0 1px 0 rgba(255,255,255,0.18) inset, 0 1px 2px rgba(15,23,42,0.18), 0 0 0 1px rgba(37,99,235,0.5), 0 6px 18px -4px rgba(37,99,235,0.4)",
@@ -126,7 +126,7 @@ export default function CaseDetailPage() {
 
         <StageProgress current={detail.stage} daysInStage={detail.daysInStage} />
 
-        <div className="mt-7 pt-6 border-t border-[var(--border)] grid grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="mt-6 md:mt-7 pt-6 border-t border-[var(--border)] grid grid-cols-2 lg:grid-cols-4 gap-5 md:gap-6">
           <KeyMetric
             label="Projected value"
             value={formatCurrency(detail.projectedValue, { compact: true })}
@@ -154,13 +154,13 @@ export default function CaseDetailPage() {
       </motion.section>
 
       {/* Tabs */}
-      <div className="bg-[var(--bg-elevated)] rounded-[14px] border border-[var(--border)] p-1 mb-6 inline-flex">
+      <div className="bg-[var(--bg-elevated)] rounded-[14px] border border-[var(--border)] p-1 mb-5 md:mb-6 inline-flex max-w-full overflow-x-auto no-scrollbar">
         {TABS.map((t) => (
           <button
             key={t.id}
             onClick={() => setTab(t.id)}
             className={cn(
-              "relative inline-flex items-center h-9 px-3.5 text-[12.5px] font-medium rounded-[10px] transition-colors",
+              "relative inline-flex items-center h-9 px-3 sm:px-3.5 text-[12.5px] font-medium rounded-[10px] transition-colors whitespace-nowrap shrink-0",
               tab === t.id
                 ? "text-[var(--text-primary)]"
                 : "text-[var(--text-tertiary)] hover:text-[var(--text-secondary)]"
@@ -246,7 +246,7 @@ const PARTY_LABEL: Record<CaseParty["role"], string> = {
 
 function OverviewTab({ detail, isStub }: { detail: CaseDetail; isStub: boolean }) {
   return (
-    <div className="grid grid-cols-12 gap-6">
+    <div className="grid grid-cols-12 gap-5 md:gap-6">
       <div className="col-span-12 lg:col-span-8 space-y-6">
         {/* Parties */}
         <Card title="Parties" actions={<AddBtn label="Add party" />}>
@@ -590,7 +590,7 @@ function SettlementTab({ detail, isStub }: { detail: CaseDetail; isStub: boolean
   }
   const latest = detail.settlement[detail.settlement.length - 1];
   return (
-    <div className="grid grid-cols-12 gap-6">
+    <div className="grid grid-cols-12 gap-5 md:gap-6">
       <div className="col-span-12 lg:col-span-7 space-y-6">
         <Card title="Negotiation history">
           <ul className="space-y-4">
@@ -703,7 +703,7 @@ function ProjRow({
 function FinancialsTab({ detail }: { detail: CaseDetail }) {
   const f = detail.financials;
   return (
-    <div className="grid grid-cols-12 gap-6">
+    <div className="grid grid-cols-12 gap-5 md:gap-6">
       <div className="col-span-12 lg:col-span-7">
         <Card title="Disbursement projection">
           <div className="space-y-3.5">

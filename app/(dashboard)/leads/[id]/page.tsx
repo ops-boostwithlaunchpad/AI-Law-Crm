@@ -26,7 +26,7 @@ export default function LeadDetailPage() {
   const chipStyle = CHIP_BG[ctype.tone];
 
   return (
-    <div className="px-8 pt-6 pb-12 max-w-[1400px]">
+    <div className="px-4 sm:px-6 md:px-8 pt-5 md:pt-6 pb-10 md:pb-12 max-w-[1400px]">
       {/* Breadcrumb */}
       <Link
         href="/leads"
@@ -41,11 +41,11 @@ export default function LeadDetailPage() {
         initial={{ opacity: 0, y: 6 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4, ease: [0.32, 0.72, 0, 1] }}
-        className="bg-[var(--bg-elevated)] rounded-[20px] border border-[var(--border)] p-7 shadow-[var(--shadow-card)] mb-6"
+        className="bg-[var(--bg-elevated)] rounded-[20px] border border-[var(--border)] p-5 md:p-7 shadow-[var(--shadow-card)] mb-5 md:mb-6"
       >
-        <div className="flex items-start justify-between gap-6 flex-wrap">
-          <div className="flex items-start gap-5 min-w-0">
-            <div className="h-16 w-16 rounded-full bg-gradient-to-br from-[#3b82f6] to-[#6366f1] flex items-center justify-center text-white text-[20px] font-semibold tracking-wide shrink-0 shadow-[0_4px_14px_-2px_rgba(37,99,235,0.4)]">
+        <div className="flex items-start justify-between gap-4 md:gap-6 flex-wrap">
+          <div className="flex items-start gap-4 md:gap-5 min-w-0">
+            <div className="h-14 w-14 md:h-16 md:w-16 rounded-full bg-gradient-to-br from-[#3b82f6] to-[#6366f1] flex items-center justify-center text-white text-[18px] md:text-[20px] font-semibold tracking-wide shrink-0 shadow-[0_4px_14px_-2px_rgba(37,99,235,0.4)]">
               {lead.name.split(" ").slice(0, 2).map((p) => p[0]).join("")}
             </div>
             <div className="min-w-0">
@@ -74,7 +74,7 @@ export default function LeadDetailPage() {
             </div>
           </div>
 
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 flex-wrap w-full md:w-auto">
             <button className="h-9 px-3.5 rounded-[10px] bg-[var(--bg-elevated)] border border-[var(--border)] text-[12.5px] font-medium text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:border-[var(--border-strong)] inline-flex items-center transition-colors">
               Edit
             </button>
@@ -82,7 +82,7 @@ export default function LeadDetailPage() {
               Reject
             </button>
             <button
-              className="h-9 px-3.5 rounded-[10px] bg-[var(--accent)] text-white text-[12.5px] font-medium inline-flex items-center hover:bg-[var(--accent-hover)] transition-colors"
+              className="h-9 px-3.5 rounded-[10px] bg-[var(--accent)] text-white text-[12.5px] font-medium inline-flex items-center hover:bg-[var(--accent-hover)] transition-colors flex-1 md:flex-initial justify-center"
               style={{
                 boxShadow:
                   "0 1px 0 rgba(255,255,255,0.18) inset, 0 1px 2px rgba(15,23,42,0.18), 0 0 0 1px rgba(37,99,235,0.5), 0 6px 18px -4px rgba(37,99,235,0.4)",
@@ -93,7 +93,7 @@ export default function LeadDetailPage() {
           </div>
         </div>
 
-        <div className="mt-6 pt-6 border-t border-[var(--border)] grid grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="mt-6 pt-6 border-t border-[var(--border)] grid grid-cols-2 lg:grid-cols-4 gap-5 md:gap-6">
           <HeroStat
             label="Case type"
             value={
@@ -159,15 +159,15 @@ export default function LeadDetailPage() {
       </motion.section>
 
       {/* Two column: AI panel + intake / sidebar */}
-      <div className="grid grid-cols-12 gap-6">
+      <div className="grid grid-cols-12 gap-5 md:gap-6">
         {/* Left — AI analysis + intake */}
-        <div className="col-span-12 lg:col-span-8 space-y-6">
+        <div className="col-span-12 lg:col-span-8 space-y-5 md:space-y-6">
           <AIAnalysisCard lead={lead} />
           <IntakeCard lead={lead} />
         </div>
 
         {/* Right — risk score + signals + recommendation */}
-        <aside className="col-span-12 lg:col-span-4 space-y-6">
+        <aside className="col-span-12 lg:col-span-4 space-y-5 md:space-y-6">
           <RiskScoreCard score={lead.aiRiskScore} recommendation={lead.aiRecommendation} />
           <SignalsCard signals={lead.signals} />
         </aside>

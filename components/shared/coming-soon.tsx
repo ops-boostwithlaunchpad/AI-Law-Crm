@@ -23,7 +23,7 @@ export function ComingSoon({
     <>
       <PageHeader title={title} />
 
-      <div className="px-8 pb-16 max-w-[1100px]">
+      <div className="px-4 sm:px-6 md:px-8 pb-12 md:pb-16 max-w-[1100px]">
         <motion.section
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
@@ -40,7 +40,7 @@ export function ComingSoon({
             </div>
           </div>
 
-          <div className="px-10 py-10">
+          <div className="px-6 md:px-10 py-7 md:py-10">
             <div className="text-[10.5px] font-mono uppercase tracking-[0.09em] text-[var(--text-tertiary)] font-medium mb-3">
               Coming soon
             </div>
@@ -77,12 +77,12 @@ export function ComingSoon({
               ))}
             </ul>
 
-            <div className="mt-9 pt-6 border-t border-[var(--border)] flex items-center justify-between gap-4 flex-wrap">
+            <div className="mt-9 pt-6 border-t border-[var(--border)] flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
               <div className="text-[12px] text-[var(--text-tertiary)]">
                 Targeted for the build phase shown above. Foundation, design system, and routing are already in place.
               </div>
               <button
-                className="inline-flex items-center h-9 px-3.5 rounded-[10px] bg-[var(--accent)] text-white text-[12.5px] font-medium hover:bg-[var(--accent-hover)] transition-colors"
+                className="inline-flex items-center justify-center h-9 px-3.5 rounded-[10px] bg-[var(--accent)] text-white text-[12.5px] font-medium hover:bg-[var(--accent-hover)] transition-colors w-full sm:w-auto"
                 style={{
                   boxShadow:
                     "0 1px 0 rgba(255,255,255,0.18) inset, 0 1px 2px rgba(15,23,42,0.16), 0 0 0 1px rgba(37,99,235,0.5), 0 6px 18px -4px rgba(37,99,235,0.4)",

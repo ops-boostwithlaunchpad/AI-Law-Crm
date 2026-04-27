@@ -43,9 +43,9 @@ export function PipelineChartCard({
   }, [data]);
 
   return (
-    <section className="bg-[var(--bg-elevated)] rounded-[20px] border border-[var(--border)] p-6 shadow-[var(--shadow-card)] card-float">
+    <section className="bg-[var(--bg-elevated)] rounded-[20px] border border-[var(--border)] p-5 md:p-6 shadow-[var(--shadow-card)] card-float">
       {/* Header */}
-      <header className="flex items-start justify-between gap-4 mb-5">
+      <header className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3 sm:gap-4 mb-5">
         <div>
           <div className="text-[10.5px] font-mono uppercase tracking-[0.08em] text-[var(--text-tertiary)] font-medium mb-2">
             Case Pipeline Value
@@ -63,7 +63,7 @@ export function PipelineChartCard({
           </div>
         </div>
 
-        <div className="flex items-center gap-px p-[3px] rounded-[10px] bg-[var(--bg-secondary)] border border-[var(--border)]">
+        <div className="flex items-center gap-px p-[3px] rounded-[10px] bg-[var(--bg-secondary)] border border-[var(--border)] overflow-x-auto no-scrollbar shrink-0 self-start">
           {RANGES.map((r) => (
             <button
               key={r}
@@ -97,7 +97,7 @@ export function PipelineChartCard({
       </div>
 
       {/* Chart */}
-      <div className="h-[280px] mt-2">
+      <div className="h-[220px] sm:h-[260px] md:h-[280px] mt-2 -mx-2 sm:mx-0">
         <ResponsiveContainer width="100%" height="100%">
           <BarChart
             data={data}

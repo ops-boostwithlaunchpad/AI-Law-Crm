@@ -46,9 +46,9 @@ export default function LeadsPage() {
         primaryAction={{ label: "Add lead" }}
       />
 
-      <div className="px-8 pb-12 max-w-[1400px] space-y-6">
+      <div className="px-4 sm:px-6 md:px-8 pb-10 md:pb-12 max-w-[1400px] space-y-5 md:space-y-6">
         {/* Stats row */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
           <MiniStat
             label="Leads this week"
             value={LEAD_STATS.total_week}

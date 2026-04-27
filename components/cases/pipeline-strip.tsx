@@ -49,7 +49,7 @@ export function PipelineStrip({
   const max = Math.max(...stages.map((s) => s.count));
 
   return (
-    <section className="bg-[var(--bg-elevated)] rounded-[20px] border border-[var(--border)] p-6 shadow-[var(--shadow-card)]">
+    <section className="bg-[var(--bg-elevated)] rounded-[20px] border border-[var(--border)] p-5 md:p-6 shadow-[var(--shadow-card)]">
       <header className="flex items-baseline justify-between mb-5">
         <div className="flex items-baseline gap-2">
           <h2 className="text-[15px] font-semibold text-[var(--text-primary)] tracking-tight">
@@ -64,7 +64,7 @@ export function PipelineStrip({
         </span>
       </header>
 
-      <div className="grid grid-cols-5 gap-3">
+      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
         {stages.map((s, i) => {
           const tone = STAGE_TONE[s.stage];
           const pct = (s.count / max) * 100;

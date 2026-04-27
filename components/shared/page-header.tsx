@@ -1,7 +1,8 @@
 "use client";
 
 import * as React from "react";
-import { Bell, Share2, UserPlus } from "lucide-react";
+import { Bell, Share2, UserPlus, Menu } from "lucide-react";
+import { useSidebar } from "./sidebar-context";
 
 export interface PageHeaderProps {
   title: string;
@@ -21,15 +22,31 @@ export function PageHeader({
     { name: "MK", tone: "blue" },
   ],
 }: PageHeaderProps) {
-  return (
-    <header className="flex items-center justify-between px-8 pt-8 pb-6 max-w-[1400px]">
-      <h1 className="display-2 text-[var(--text-primary)]">{title}</h1>
+  const { openMobile } = useSidebar();
 
-      <div className="flex items-center gap-2">
-        <IconBtn icon={<Share2 size={15} strokeWidth={1.9} />} />
+  return (
+    <header className="flex items-center justify-between gap-3 px-4 sm:px-6 md:px-8 pt-5 md:pt-8 pb-5 md:pb-6 max-w-[1400px]">
+      <div className="flex items-center gap-3 min-w-0">
+        {/* Hamburger — mobile only */}
+        <button
+          onClick={openMobile}
+          aria-label="Open menu"
+          className="md:hidden h-9 w-9 inline-flex items-center justify-center rounded-[10px] bg-[var(--bg-elevated)] border border-[var(--border)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:border-[var(--border-strong)] transition-all shadow-[var(--shadow-xs)] shrink-0"
+        >
+          <Menu size={16} strokeWidth={2} />
+        </button>
+        <h1 className="display-2 text-[var(--text-primary)] truncate">{title}</h1>
+      </div>
+
+      <div className="flex items-center gap-2 shrink-0">
+        <IconBtn
+          icon={<Share2 size={15} strokeWidth={1.9} />}
+          className="hidden sm:inline-flex"
+        />
         <IconBtn icon={<Bell size={15} strokeWidth={1.9} />} hasDot />
 
-        <div className="flex items-center -space-x-1.5 mr-1">
+        {/* Collaborator stack — hide on small mobile */}
+        <div className="hidden md:flex items-center -space-x-1.5 mr-1">
           {collaborators.map((c, i) => (
             <div
               key={i}
@@ -43,7 +60,10 @@ export function PageHeader({
           </div>
         </div>
 
-        <IconBtn icon={<UserPlus size={15} strokeWidth={1.9} />} />
+        <IconBtn
+          icon={<UserPlus size={15} strokeWidth={1.9} />}
+          className="hidden sm:inline-flex"
+        />
       </div>
     </header>
   );
@@ -53,15 +73,17 @@ function IconBtn({
   icon,
   hasDot,
   onClick,
+  className = "",
 }: {
   icon: React.ReactNode;
   hasDot?: boolean;
   onClick?: () => void;
+  className?: string;
 }) {
   return (
     <button
       onClick={onClick}
-      className="relative h-9 w-9 inline-flex items-center justify-center rounded-[10px] bg-[var(--bg-elevated)] border border-[var(--border)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:border-[var(--border-strong)] transition-all shadow-[var(--shadow-xs)]"
+      className={`relative h-9 w-9 inline-flex items-center justify-center rounded-[10px] bg-[var(--bg-elevated)] border border-[var(--border)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:border-[var(--border-strong)] transition-all shadow-[var(--shadow-xs)] ${className}`}
     >
       {icon}
       {hasDot && (

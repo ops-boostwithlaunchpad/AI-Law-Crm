@@ -86,7 +86,7 @@ export function StageProgress({
                 </motion.div>
                 <div
                   className={cn(
-                    "mt-2 text-[11.5px] font-medium text-center",
+                    "mt-2 text-[10.5px] sm:text-[11.5px] font-medium text-center leading-tight",
                     isCurrent
                       ? "text-[var(--text-primary)]"
                       : done
